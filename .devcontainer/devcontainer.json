@@ -1,5 +1,5 @@
 {
-  "name": "vine-dev",
+  "name": "universal-box",
   "build": {
     "dockerfile": "Containerfile"
   },
