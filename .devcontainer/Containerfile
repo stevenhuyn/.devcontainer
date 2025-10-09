@@ -36,17 +36,16 @@ RUN curl -LsSf https://astral.sh/uv/install.sh | sh \
     && echo "export PATH=\"/home/$USERNAME/.local/bin:\$PATH\"" >> /home/$USERNAME/.bashrc
 
 # Install Claude Code
-RUN npm install -g @anthropic-ai/claude-code
+RUN eval "$(fnm env --shell bash)" && npm install -g @anthropic-ai/claude-code
 
 # Configure colored prompt
 RUN echo 'export PS1="\[\e[32m\]\u@\h\[\e[m\]:\[\e[34m\]\w\[\e[m\]\$ "' >> /home/${USERNAME}/.bashrc
 
 # Persist bash history
-RUN SNIPPET="export PROMPT_COMMAND='history -a' && export HISTFILE=/commandhistory/.bash_history" \
-    && mkdir /commandhistory \
-    && touch /commandhistory/.bash_history \
-    && chown -R $USERNAME /commandhistory \
-    && echo "$SNIPPET" >> "/home/$USERNAME/.bashrc"
+RUN SNIPPET="export PROMPT_COMMAND='history -a' && export HISTFILE=/home/${USERNAME}/.commandhistory/.bash_history" \
+    && mkdir -p /home/${USERNAME}/.commandhistory \
+    && touch /home/${USERNAME}/.commandhistory/.bash_history \
+    && echo "$SNIPPET" >> "/home/${USERNAME}/.bashrc"
 
 # Set working directory
 WORKDIR /workspaces
