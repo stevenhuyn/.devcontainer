@@ -26,12 +26,18 @@ USER $USERNAME
 RUN curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
 ENV PATH="/home/${USERNAME}/.cargo/bin:${PATH}"
 
-# Install fnm and Node and pnpm
+# Install fnm and Node
 RUN curl -fsSL https://fnm.vercel.app/install | bash
 ENV PATH="/home/${USERNAME}/.local/share/fnm:${PATH}"
 RUN eval "$(fnm env --shell bash)" && fnm install --lts
-RUN eval "$(fnm env --shell bash)" && corepack enable && corepack prepare pnpm@latest --activate
-RUN eval "$(fnm env --shell bash)" && pnpm config set minimum-release-age 1440
+
+# Setup pnpm
+ENV PNPM_HOME="/home/${USERNAME}/pnpm"
+ENV PATH="$PNPM_HOME:$PATH"
+RUN eval "$(fnm env --shell bash)" && npm install --global corepack@latest
+RUN eval "$(fnm env --shell bash)" && corepack enable
+
+# Set npm alias to pnpm
 RUN echo 'alias npm="pnpm"' >> /home/${USERNAME}/.bashrc
 
 # Install global packages via pnpm
