@@ -26,17 +26,19 @@ USER $USERNAME
 RUN curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
 ENV PATH="/home/${USERNAME}/.cargo/bin:${PATH}"
 
-# Install fnm and Node
+# Install fnm and Node and pnpm
 RUN curl -fsSL https://fnm.vercel.app/install | bash
 ENV PATH="/home/${USERNAME}/.local/share/fnm:${PATH}"
 RUN eval "$(fnm env --shell bash)" && fnm install --lts
+RUN eval "$(fnm env --shell bash)" && corepack enable && corepack prepare pnpm@latest --activate
+RUN echo 'alias npm="pnpm"' >> /home/${USERNAME}/.bashrc
+
+# Install global packages via pnpm
+RUN eval "$(fnm env --shell bash)" && pnpm install -g @anthropic-ai/claude-code eslint
 
 # Install uv and Python
 RUN curl -LsSf https://astral.sh/uv/install.sh | sh \
     && echo "export PATH=\"/home/$USERNAME/.local/bin:\$PATH\"" >> /home/$USERNAME/.bashrc
-
-# Install Claude Code
-RUN eval "$(fnm env --shell bash)" && npm install -g @anthropic-ai/claude-code
 
 # Configure colored prompt
 RUN echo 'export PS1="\[\e[32m\]\u@\h\[\e[m\]:\[\e[34m\]\w\[\e[m\]\$ "' >> /home/${USERNAME}/.bashrc
