@@ -10,7 +10,7 @@ RUN apt-get update \
     && echo $USERNAME ALL=\(root\) NOPASSWD:ALL > /etc/sudoers.d/$USERNAME \
     && chmod 0440 /etc/sudoers.d/$USERNAME
 
-# Install basic dependencies (as root)
+# Install basic dependencies
 RUN apt-get update \
     && apt-get install -y \
     curl \
