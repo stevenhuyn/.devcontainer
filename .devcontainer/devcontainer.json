@@ -25,6 +25,32 @@
         ],
 
         // Webdev
+        "[typescript]": {
+          "editor.defaultFormatter": "esbenp.prettier-vscode",
+          "editor.formatOnSave": true
+        },
+        "[javascript]": {
+          "editor.defaultFormatter": "esbenp.prettier-vscode",
+          "editor.formatOnSave": true
+        },
+        "[typescriptreact]": {
+          "editor.defaultFormatter": "esbenp.prettier-vscode",
+          "editor.formatOnSave": true
+        },
+        "[javascriptreact]": {
+          "editor.defaultFormatter": "esbenp.prettier-vscode",
+          "editor.formatOnSave": true
+        },
+        "[json]": {
+          "editor.defaultFormatter": "vscode.json-language-features",
+          "editor.formatOnSave": true
+        },
+        "eslint.validate": [
+          "javascript",
+          "javascriptreact",
+          "typescript",
+          "typescriptreact"
+        ],
 
 
         // Misc
@@ -39,6 +65,7 @@
         // Webdev
         "bradlc.vscode-tailwindcss",
         "esbenp.prettier-vscode",
+        "dbaeumer.vscode-eslint",
 
         // Python
         "ms-python.python",
