@@ -1,0 +1,61 @@
+{
+  "name": "vine-dev",
+  "build": {
+    "dockerfile": "Containerfile"
+  },
+
+  "customizations": {
+    "vscode": {
+      "settings": {
+        // Rust Stuff
+        "rust-analyzer.check.command": "clippy",
+        "[rust]": {
+          "editor.defaultFormatter": "rust-lang.rust-analyzer",
+          "editor.formatOnSave": true
+        },
+
+        // Python Stuff
+        "python.analysis.typeCheckingMode": "standard",
+        "[python]": {
+            "editor.defaultFormatter": "charliermarsh.ruff",
+            "editor.formatOnSave": true
+        },
+        "ruff.interpreter": [
+            "${workspaceFolder}/.venv/bin/python"
+        ],
+
+        // Webdev
+
+
+        // Misc
+        "terminal.integrated.defaultProfile.linux": "bash"
+        
+      },
+      "extensions": [
+        // Rust
+        "rust-lang.rust-analyzer",
+        "tamasfe.even-better-toml",
+
+        // Webdev
+        "bradlc.vscode-tailwindcss",
+        "esbenp.prettier-vscode",
+
+        // Python
+        "ms-python.python",
+        "charliermarsh.ruff",
+
+        // Misc
+        "eamodio.gitlens",
+        "fill-labs.dependi"
+      ]
+    }
+  },
+
+"mounts": [
+      "source=projectname-bashhistory,target=/commandhistory,type=volume"
+  ],
+
+  "remoteUser": "ubuntu",
+  "containerUser": "ubuntu",
+  "postCreateCommand": "bash .devcontainer/post-create.sh"
+}
