@@ -84,7 +84,8 @@
   ],
 
   "containerEnv": {
-    "DISPLAY": "${localEnv:DISPLAY}"
+    "DISPLAY": "${localEnv:DISPLAY}",
+    "XDG_RUNTIME_DIR": "/tmp/user/1000"
   },
 
   "runArgs": ["--device", "nvidia.com/gpu=all"],
