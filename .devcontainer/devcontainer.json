@@ -78,9 +78,14 @@
     }
   },
 
-"mounts": [
-      "source=projectname-bashhistory,target=/commandhistory,type=volume"
+  "mounts": [
+    "source=projectname-bashhistory,target=/commandhistory,type=volume",
+    "source=/tmp/.X11-unix,target=/tmp/.X11-unix,type=bind,readonly"
   ],
+
+  "containerEnv": {
+    "DISPLAY": "${localEnv:DISPLAY}"
+  },
 
   "remoteUser": "ubuntu",
   "containerUser": "ubuntu",
