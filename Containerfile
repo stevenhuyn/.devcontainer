@@ -23,6 +23,7 @@ RUN apt-get update \
     && rm -rf /var/lib/apt/lists/*
 
 # Install GPU/Graphics libraries
+# TBH these were AI Generated so need to work out what is unecessary
 RUN apt-get update \
     && apt-get install -y \
     # Mesa drivers for Intel integrated graphics
