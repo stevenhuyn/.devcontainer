@@ -22,6 +22,27 @@ RUN apt-get update \
     libxkbcommon-dev \
     && rm -rf /var/lib/apt/lists/*
 
+# Install GPU/Graphics libraries
+RUN apt-get update \
+    && apt-get install -y \
+    # Mesa drivers for Intel integrated graphics
+    mesa-utils \
+    mesa-vulkan-drivers \
+    libgl1-mesa-dri \
+    libglx-mesa0 \
+    libgl1 \
+    libegl1 \
+    # Vulkan support
+    vulkan-tools \
+    libvulkan1 \
+    # OpenCL support (for compute)
+    ocl-icd-libopencl1 \
+    # Additional graphics libraries
+    libglfw3 \
+    libglfw3-dev \
+    libglew-dev \
+    && rm -rf /var/lib/apt/lists/*
+
 # Switch to the user
 USER $USERNAME
 

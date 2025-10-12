@@ -87,6 +87,13 @@
     "DISPLAY": "${localEnv:DISPLAY}"
   },
 
+  "runArgs": [
+    "--device=/dev/dri",
+    "--gpus",
+    "all"
+  ],
+
+
   "remoteUser": "ubuntu",
   "containerUser": "ubuntu",
   "postCreateCommand": "bash .devcontainer/post-create.sh"
