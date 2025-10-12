@@ -17,6 +17,7 @@ RUN apt-get update \
     build-essential \
     git \
     unzip \
+    x11-apps \
     && rm -rf /var/lib/apt/lists/*
 
 # Switch to the user
