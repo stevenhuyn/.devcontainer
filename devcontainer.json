@@ -87,11 +87,7 @@
     "DISPLAY": "${localEnv:DISPLAY}"
   },
 
-  "runArgs": [
-    "--device=/dev/dri",
-    "--gpus",
-    "all"
-  ],
+  "runArgs": ["--device", "nvidia.com/gpu=all"],
 
 
   "remoteUser": "ubuntu",
