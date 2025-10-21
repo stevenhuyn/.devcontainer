@@ -79,14 +79,14 @@
   },
 
   "mounts": [
-    "source=projectname-bashhistory,target=/commandhistory,type=volume",
-    "source=/tmp/.X11-unix,target=/tmp/.X11-unix,type=bind,readonly"
+    "source=projectname-bashhistory,target=/commandhistory,type=volume"
+    // "source=/tmp/.X11-unix,target=/tmp/.X11-unix,type=bind,readonly"
   ],
 
-  "containerEnv": {
-    "DISPLAY": "${localEnv:DISPLAY}",
-    "XDG_RUNTIME_DIR": "/tmp/user/1000"
-  },
+  // "containerEnv": {
+  //   "DISPLAY": "${localEnv:DISPLAY}",
+  //   "XDG_RUNTIME_DIR": "/tmp/user/1000"
+  // },
 
   "runArgs": ["--device", "nvidia.com/gpu=all"],
 
