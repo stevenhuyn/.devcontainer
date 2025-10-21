@@ -83,6 +83,7 @@
     // "source=/tmp/.X11-unix,target=/tmp/.X11-unix,type=bind,readonly"
   ],
 
+  // For some reason having this without the Graphics packages in the Containerfile breaks git integration
   // "containerEnv": {
   //   "DISPLAY": "${localEnv:DISPLAY}",
   //   "XDG_RUNTIME_DIR": "/tmp/user/1000"
