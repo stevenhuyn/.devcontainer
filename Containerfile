@@ -39,13 +39,8 @@ RUN mise use --global pnpm@latest && \
 # Install the tools via mise
 RUN mise install
 
-# Verify installations
-RUN \
-    mise exec -- pnpm --version && \
-    echo 'alias npm="pnpm"' >> /home/${USERNAME}/.bashrc \
-    mise exec -- rustc --version && \
-    mise exec -- go version && \
-    mise exec -- uv --version
+# Alias pnpm as npm
+RUN echo 'alias npm="pnpm"\n' >> /home/${USERNAME}/.bashrc
 
 # Configure colored prompt
 RUN echo 'export PS1="\[\e[32m\]\u@\h\[\e[m\]:\[\e[34m\]\w\[\e[m\]\$ "' >> /home/${USERNAME}/.bashrc
