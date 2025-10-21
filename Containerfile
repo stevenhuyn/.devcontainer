@@ -35,7 +35,7 @@ RUN mise use --global pnpm@latest && \
     mise use --global rust@latest && \
     mise use --global go@latest && \
     mise use --global uv@latest
-a
+
 # Install the tools via mise
 RUN mise install
 
