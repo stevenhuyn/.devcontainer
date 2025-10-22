@@ -12,3 +12,8 @@ It currently contains
 And all the relevant vscode extensions
 
 Works with podman too!
+
+Here's my alias for using this
+```
+alias devcontainer='git clone https://github.com/stevenhuyn/.devcontainer.git .devcontainer && rm -rf .devcontainer/.git .devcontainer/README.md && cp -r .devcontainer/.devcontainer/. .devcontainer/ && rm -rf .devcontainer/.devcontainer'
+```
