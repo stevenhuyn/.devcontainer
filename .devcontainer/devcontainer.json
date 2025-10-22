@@ -1,5 +1,5 @@
 {
-  "name": "universal-box",
+  "name": "podbox",
   "build": {
     "dockerfile": "Containerfile"
   },
@@ -70,6 +70,9 @@
         // Python
         "ms-python.python",
         "charliermarsh.ruff",
+
+        // Go
+        "golang.Go",
 
         // Misc
         "eamodio.gitlens",
