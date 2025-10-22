@@ -25,22 +25,26 @@ USER $USERNAME
 
 # Install mise
 RUN curl https://mise.run | sh
-
-# Add mise to PATH and enable mise activation
 ENV PATH="/home/${USERNAME}/.local/bin:${PATH}"
-RUN echo 'eval "$(mise activate bash)"' >> /home/${USERNAME}/.bashrc
 
-# Configure mise to install tools
-RUN mise use --global pnpm@latest && \
-    mise use --global rust@latest && \
-    mise use --global go@latest && \
-    mise use --global uv@latest
+# Activate mise and install tools
+RUN /home/${USERNAME}/.local/bin/mise use --global pnpm@latest && \
+    /home/${USERNAME}/.local/bin/mise use --global rust@latest && \
+    /home/${USERNAME}/.local/bin/mise use --global go@latest && \
+    /home/${USERNAME}/.local/bin/mise use --global uv@latest && \
+    /home/${USERNAME}/.local/bin/mise use --global node@lts
 
-# Install the tools via mise
-RUN mise install
+# Add mise shims to PATH
+ENV PATH="/home/${USERNAME}/.local/share/mise/shims:${PATH}"
 
-# Alias pnpm as npm
-RUN echo 'alias npm="pnpm"\n' >> /home/${USERNAME}/.bashrc
+# Setup PNPM
+ENV PNPM_HOME="/home/${USERNAME}/.local/share/pnpm"
+ENV PATH="$PNPM_HOME:$PATH"
+RUN mkdir -p $PNPM_HOME
+RUN echo 'alias npm="pnpm"' >> /home/${USERNAME}/.bashrc
+
+# Get Claude Code
+RUN mise exec -- pnpm install -g @anthropic-ai/claude-code eslint
 
 # Configure colored prompt
 RUN echo 'export PS1="\[\e[32m\]\u@\h\[\e[m\]:\[\e[34m\]\w\[\e[m\]\$ "' >> /home/${USERNAME}/.bashrc
